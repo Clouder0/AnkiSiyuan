@@ -51,9 +51,8 @@ def parse():
     config.config_path = args.config
     config.auth_code = args.password
     try:
-        f = open("last_sync_time", "r", encoding="UTF-8")
-        config.last_sync_time = f.read()
-        f.close()
+        with open("last_sync_time", "r", encoding="UTF-8") as f:
+            config.last_sync_time = f.read()
     except Exception:
         pass
     enable_log_file()

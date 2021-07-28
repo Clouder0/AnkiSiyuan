@@ -29,14 +29,13 @@ def execute_from_commandline():
         elif len(old) == 1:
             ankihelper.update_note_fields(old[0], x)
             print("Anki Note {} updated.".format(old[0]))
-            updated_notes = updated_notes + 1
+            updated_notes += 1
         else:
             ankihelper.add_note(x)
-            added_notes = added_notes + 1
+            added_notes += 1
     print("added {} notes, updated {} notes.".format(added_notes, updated_notes))
-    f = open("last_sync_time", "w", encoding="UTF-8")
-    f.write(this_sync_time)
-    f.close()
+    with open("last_sync_time", "w", encoding="UTF-8") as f:
+        f.write(this_sync_time)
 
 
 if __name__ == "__main__":
