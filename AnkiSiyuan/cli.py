@@ -9,7 +9,6 @@ import datetime
 def execute_from_commandline():
     config_parser.parse()
     print(config.auth_code)
-    siyuanhelper.login(config.auth_code)
     print(config.last_sync_time)
     this_sync_time = datetime.datetime.now().strftime(r"%Y%m%d%H%M%S")
     print(this_sync_time)

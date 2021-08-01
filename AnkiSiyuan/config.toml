@@ -1,0 +1,60 @@
+deck_name = "Export"
+skip = false
+mathjax = true
+tags = [  ]
+
+[siyuan]
+api_token = ""
+
+[log_config]
+version = 1
+disable_existing_loggers = false
+
+[notetype.Cloze]
+clozePrefix = "\\*\\*"
+clozeSuffix = "\\*\\*"
+clozeNumberPrefix = "\\["
+clozeNumberSuffix = "\\]"
+
+[notetype.Choices]
+
+[notetype.ListCloze]
+
+[notetype.QA]
+
+[notetype.TableCloze]
+
+[notetype.MQA]
+prefix = "!"
+
+[log_config.loggers.main]
+level = "DEBUG"
+handlers = [ "console", "log_file",]
+
+[log_config.loggers.notetype]
+level = "DEBUG"
+handlers = [ "console", "log_file",]
+
+[log_config.loggers.parser]
+level = "DEBUG"
+handlers = [ "console", "log_file",]
+
+[log_config.loggers.helper]
+level = "DEBUG"
+handlers = [ "console", "log_file",]
+
+[log_config.handlers.console]
+level = "WARNING"
+formatter = "standard"
+class = "logging.StreamHandler"
+stream = "ext://sys.stdout"
+
+[log_config.handlers.log_file]
+level = "INFO"
+formatter = "standard"
+class = "logging.FileHandler"
+filename = "log.txt"
+mode = "a"
+
+[log_config.formatters.standard]
+format = "%(asctime)s [%(levelname)s] %(name)s: %(message)s"
