@@ -27,7 +27,8 @@ def execute_from_commandline():
                 x["SiyuanID"], old))
         elif len(old) == 1:
             ankihelper.update_note_fields(old[0], x)
-            print("Anki Note {} updated.".format(old[0]))
+            print("Updated: SiyuanID[{}] AnkiID[{}]".format(
+                x.fields["SiyuanID"], old[0]))
             updated_notes = updated_notes + 1
         else:
             ankihelper.add_note(x)
