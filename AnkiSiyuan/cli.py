@@ -13,7 +13,7 @@ updated_notes = 0
 added_notes = 0
 
 
-async def execute_from_commandline():
+async def execute():
     start_time = time.perf_counter()
     session = aiohttp.ClientSession()
     siyuanhelper.set_session(session)
@@ -54,5 +54,5 @@ def handle(x):
         added_notes = added_notes + 1
 
 
-if __name__ == "__main__":
-    asyncio.run(execute_from_commandline())
+def execute_from_commandline():
+    asyncio.run(execute())
