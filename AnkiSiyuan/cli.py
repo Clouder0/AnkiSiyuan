@@ -1,8 +1,8 @@
 from AnkiIn.parser import siyuan as parser
 from AnkiIn.helper import siyuanHelper as siyuanhelper
 from AnkiIn.helper import ankiConnectHelper as ankihelper
-import config
-import config_parser
+from . import config
+from . import config_parser
 import datetime
 import aiohttp
 import asyncio

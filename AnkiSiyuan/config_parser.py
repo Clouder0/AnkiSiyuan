@@ -2,7 +2,7 @@ import argparse
 import os.path
 from AnkiIn.config import dict as conf
 from AnkiIn import config as AnkiIn_config
-import config
+from . import config
 import toml
 
 version_name = "0.0.1"
