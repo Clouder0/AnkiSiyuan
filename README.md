@@ -20,6 +20,8 @@
 pip install AnkiSiyuan
 ```
 
+需要在 Anki 中安装 anki-connect 拓展。
+
 基础使用方法：
 
 ```bash
