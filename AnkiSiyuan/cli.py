@@ -15,8 +15,6 @@ added_notes = 0
 
 async def execute():
     start_time = time.perf_counter()
-    session = aiohttp.ClientSession()
-    siyuanhelper.set_session(session)
     config_parser.parse()
     print(config.auth_code)
     print(config.last_sync_time)
@@ -33,7 +31,6 @@ async def execute():
     f = open("last_sync_time", "w", encoding="UTF-8")
     f.write(this_sync_time)
     f.close()
-    await session.close()
 
 
 def handle(x):
