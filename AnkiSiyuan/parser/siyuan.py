@@ -1,7 +1,7 @@
 from AnkiIn.helper.formatHelper import remove_suffix
 from siyuanhelper.helper import PropertyNotFoundException, do_property_exist_by_id, get_parent_by_id
 from siyuanhelper.helper import get_property_by_id, query_sql, get_col_by_id
-from siyuanhelper.helper import set_token
+from siyuanhelper.helper import set_token, set_session
 from AnkiIn.parser import markdown
 from AnkiIn.notetype_loader import discovered_notetypes
 from ..notetypes import SQA, SMQA, SCloze, SListCloze, STableCloze, SWatch
@@ -11,6 +11,7 @@ from AnkiIn.config import config_updater
 from AnkiIn import config
 from AnkiIn.log import parser_logger as logger
 import asyncio
+import aiohttp
 
 
 class SyntaxNode:
@@ -77,6 +78,8 @@ async def sync(last_time: str):
     # session = aiohttp.ClientSession()
     # set_session(session)
     set_token(conf["siyuan"].get("api_token", ""))
+    session = aiohttp.ClientSession()
+    set_session(session)
     link.clear()
     is_added.clear()
     roots.clear()
@@ -93,7 +96,7 @@ async def sync(last_time: str):
     # print([get_col_by_id(x.id,"markdown") for x in roots])
     for x in roots:
         await dfs(x)
-    # await session.close()
+    await session.close()
     return noteList
 
 

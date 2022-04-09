@@ -14,6 +14,9 @@ added_notes = 0
 
 
 async def execute():
+    if not ankihelper.check_online():
+        print("Anki is not online! Please open Anki and make sure anki-connect is installed.")
+        return
     start_time = time.perf_counter()
     config_parser.parse()
     print("Api Token:{}".format(conf["siyuan"]["api_token"]))
