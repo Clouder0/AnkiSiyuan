@@ -1,7 +1,7 @@
-from .SCloze import get as cget
+from AnkiIn.config import config_updater, dict as conf
 from AnkiIn.notetypes.ListCloze import check as super_check
-from AnkiIn.config import dict as conf
-from AnkiIn.config import config_updater
+
+from .SCloze import get as cget
 
 
 notetype_name = "SListCloze"

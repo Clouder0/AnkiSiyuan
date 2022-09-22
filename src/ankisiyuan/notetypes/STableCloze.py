@@ -1,7 +1,6 @@
-from AnkiIn.notetypes.TableCloze import check as super_check
-from AnkiIn.notetypes.TableCloze import get as super_get
-from AnkiIn.config import dict as conf
-from AnkiIn.config import config_updater
+from AnkiIn.config import config_updater, dict as conf
+from AnkiIn.notetypes.TableCloze import check as super_check, get as super_get
+
 from . import SCloze
 
 
@@ -27,4 +26,7 @@ def check(lines: list, extra_params={}) -> bool:
 
 
 def get(text: str, deck: str, tags: list, extra_params={}):
-    return SCloze(extra_params["SiyuanID"], super_get(text=text, deck=deck, tags=tags, extra_params=extra_params))
+    return SCloze(
+        extra_params["SiyuanID"],
+        super_get(text=text, deck=deck, tags=tags, extra_params=extra_params),
+    )

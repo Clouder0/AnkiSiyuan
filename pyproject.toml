@@ -1,6 +1,30 @@
+[tool.poetry]
+name = "ankisiyuan"
+version = "0.1.0"
+description = "Sync Anki with Siyuan"
+authors = ["clouder <clouder0@outlook.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+AnkiIn = "^0.1.7"
+siyuanhelper = "^0.3.0"
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^0.971"
+flake8 = "^5.0.4"
+flake8-isort = "^4.2.0"
+pep8-naming = "^0.13.2"
+flake8-comprehensions = "^3.10.0"
+flake8-bugbear = "^22.8.23"
+flake8-quotes = "^3.3.1"
+flake8-simplify = "^0.19.3"
+flake8-use-fstring = "^1.4"
+pre-commit = "^2.20.0"
+black = "^22.8.0"
+isort = "^5.10.1"
+
+
 [build-system]
-requires = [
-    "setuptools>=42",
-    "wheel"
-]
-build-backend = "setuptools.build_meta"
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

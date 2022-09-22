@@ -10,14 +10,16 @@
 - 增量同步
 - 勉强能用
 
-尚在早期开发阶段，勉强能用。
+更新了 v0.1.0，对同步代码进行大幅重构，优化了性能。
+
+现在初次同步的速度应该很快了。
 
 ## 安装
 
 使用 pip 安装。
 
 ```bash
-pip install AnkiSiyuan
+pip install ankisiyuan
 ```
 
 需要在 Anki 中安装 anki-connect 拓展。
@@ -25,12 +27,20 @@ pip install AnkiSiyuan
 基础使用方法：
 
 ```bash
-python -m AnkiSiyuan -p password
+python -m ankisiyuan
 ```
 
 **需要在 Anki 与思源笔记同时运行时使用。**
 
-其中 password 为你的思源授权码。**似乎目前不输入也能用，可以忽略掉。**
+需要在运行目录下保存 `config.toml` 文件，大致形式如下：
+
+```toml
+[siyuan]
+assets_replacement = "http://127.0.0.1:6806/assets/"
+api_token = "your_api_token"
+```
+
+如果希望在其他设备上也能看到图片，可以将 `http://127.0.0.1:6806/assets` 替换成思源的图床地址。
 
 请自行承担数据风险。
 
@@ -40,8 +50,14 @@ python -m AnkiSiyuan -p password
 
 具体地，创建 `ankilink` 的属性，填写相应的配置。
 
-如果对标题标记，则标题下的所有内容都会被同步。超级块同理，文档块亦同理。递归同步，请自行把控好范围。  
-**尽量使用超级块，避免嵌套，以后可能有相关的调整。**
+推荐使用标题的形式。
+
+> ## 背诵内容(在这里设置属性)
+>
+> Card1
+> Ans
+
+事实上，只要在目标卡片块的父亲块上打标记即可。比如说使用超级块打标记也是可以的。
 
 ![例子](https://user-images.githubusercontent.com/41664195/131253057-a6ae22d0-02ce-4ad7-9757-43f7b1fb5c28.png)
 
@@ -49,13 +65,15 @@ python -m AnkiSiyuan -p password
 
 ## 同步范围
 
-首次同步会消耗较长时间，之后会在执行目录下保存 `last_sync_time` 文件，保存上次同步的时间。
+每次同步都是增量同步，会在运行目录下保存上次同步的时间 `last_sync_time` 文件。
 
 也就是说，只有新增、修改了的块才会被处理，以避免无谓的重复运算。
 
 ## 图片
 
-目前的图片是通过思源提供的图床嵌入到 Anki 中。
+在运行思源的设备上，可以通过 `http://127.0.0.1:6806/assets` 访问到图片。
+
+也可以通过思源提供的图床嵌入到 Anki 中。
 
 在运行目录下创建 `config.toml` 文件，写入：
 

@@ -1,11 +1,8 @@
-from AnkiIn.note import Note
-from AnkiIn.model import Model
-from AnkiIn.config import dict as conf
-from AnkiIn.config import config_updater
+from AnkiIn.config import config_updater, dict as conf
 from AnkiIn.log import notetype_logger as log
-from AnkiIn.notetypes.Cloze import get as super_get
-from AnkiIn.notetypes.Cloze import check as super_check
-from AnkiIn.notetypes.Cloze import ClozeNote
+from AnkiIn.model import Model
+from AnkiIn.note import Note
+from AnkiIn.notetypes.Cloze import ClozeNote, check as super_check, get as super_get
 
 
 notetype_name = "SCloze"
@@ -30,7 +27,10 @@ def check(lines: list, extra_params={}) -> bool:
 
 
 def get(text: str, deck: str, tags: list, extra_params={}) -> Note:
-    return SClozeNote(extra_params["SiyuanID"], super_get(text=text, deck=deck, tags=tags, extra_params=extra_params))
+    return SClozeNote(
+        extra_params["SiyuanID"],
+        super_get(text=text, deck=deck, tags=tags, extra_params=extra_params),
+    )
 
 
 CSS = r""".card {
@@ -70,14 +70,8 @@ _model = Model(
     modelName=MODELNAME,
     isCloze=1,
     fields=["Text", "Back Extra", "SiyuanID"],
-    templates=[
-        {
-            "Name": "Cloze",
-            "Front": "{{cloze:Text}}",
-            "Back": BACK
-        }
-    ],
-    css=CSS
+    templates=[{"Name": "Cloze", "Front": "{{cloze:Text}}", "Back": BACK}],
+    css=CSS,
 )
 
 

@@ -1,10 +1,9 @@
-from AnkiIn.note import Note
-from AnkiIn.config import dict as conf
-from AnkiIn.config import config_updater
+from AnkiIn.config import config_updater, dict as conf
 from AnkiIn.log import notetype_logger as log
+from AnkiIn.note import Note
+from AnkiIn.notetypes.MQA import check as super_check, get as super_get
+
 from .SQA import SQANote
-from AnkiIn.notetypes.MQA import get as super_get
-from AnkiIn.notetypes.MQA import check as super_check
 
 
 notetype_name = "SMQA"
@@ -31,4 +30,7 @@ def check(lines: list, extra_params={}) -> bool:
 
 
 def get(text: str, deck: str, tags: list, extra_params={}) -> Note:
-    return SQANote(extra_params["SiyuanID"], super_get(text=text, deck=deck, tags=tags, extra_params=extra_params))
+    return SQANote(
+        extra_params["SiyuanID"],
+        super_get(text=text, deck=deck, tags=tags, extra_params=extra_params),
+    )
