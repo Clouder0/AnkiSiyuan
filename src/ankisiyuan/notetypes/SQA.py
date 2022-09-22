@@ -1,10 +1,7 @@
-from AnkiIn.note import Note
-from AnkiIn.notetypes.QA import get as super_get
-from AnkiIn.notetypes.QA import check as super_check
+from AnkiIn.config import config_updater, dict as conf
 from AnkiIn.model import Model
-from AnkiIn.config import dict as conf
-from AnkiIn.config import config_updater
-from AnkiIn.notetypes.QA import QANote
+from AnkiIn.note import Note
+from AnkiIn.notetypes.QA import QANote, check as super_check, get as super_get
 
 
 notetype_name = "SQA"
@@ -29,7 +26,10 @@ def check(lines: list, extra_params={}) -> bool:
 
 
 def get(text: str, deck: str, tags: list, extra_params={}) -> Note:
-    return SQANote(extra_params["SiyuanID"], super_get(text=text, deck=deck, tags=tags, extra_params=extra_params))
+    return SQANote(
+        extra_params["SiyuanID"],
+        super_get(text=text, deck=deck, tags=tags, extra_params=extra_params),
+    )
 
 
 BACK = r"""{{FrontSide}}
@@ -62,14 +62,8 @@ _model = Model(
     modelId=MODELID,
     modelName=MODELNAME,
     fields=["Front", "Back", "SiyuanID"],
-    templates=[
-        {
-            'Name': 'Card 1',
-            'Front': '{{Front}}',
-            'Back': BACK
-        }
-    ],
-    css=CSS
+    templates=[{"Name": "Card 1", "Front": "{{Front}}", "Back": BACK}],
+    css=CSS,
 )
 
 
