@@ -44,6 +44,22 @@ api_token = "your_api_token"
 
 请自行承担数据风险。
 
+## 更新
+
+一个较为稳妥的方式是卸载后再次安装。  
+需要注意，v0.1.0 之前的版本名称为 `AnkiSiyuan`，以后的版本为 `ankisiyuan`，大小写可能敏感。
+
+```bash
+pip uninstall ankisiyuan
+pip install ankisiyuan
+```
+
+另一种方式：
+
+```bash
+pip install ankisiyuan --upgrade
+```
+
 ## 思源侧标记
 
 需要对某个容器块进行标记，才会被同步到 Anki 中。
