@@ -14,10 +14,10 @@ Huge refactor. Brand new start.
 
 - Development
   - Poetry for Managing Project
-  - Mypy for Type Annotations
+  - ~~Mypy for Type Annotations~~
   - Pre-Commit Check
-  - Tox Autonamted Testing
-  - Pytest
+  - ~~Tox Autonamted Testing~~
+  - ~~Pytest~~
   - Flake8
   - Black for Code Style
   - isort for Import Sorting
