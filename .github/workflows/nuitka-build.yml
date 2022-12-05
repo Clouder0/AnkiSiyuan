@@ -39,12 +39,12 @@ jobs:
         if: runner.os == 'Windows'
         shell: powershell
         run: |
-          python -m nuitka --standalone --onefile --assume-yes-for-downloads --output-dir=build --follow-imports .\src\ankisiyuan
+          poetry run python -m nuitka --standalone --onefile --assume-yes-for-downloads --output-dir=build --follow-imports .\src\ankisiyuan
       - name: Build Executable (macOS and Linux)
         if: ${{ runner.os == 'macOS' || runner.os == 'Linux' }}
         shell: bash
         run: |
-          python -m nuitka --standalone --onefile --assume-yes-for-downloads --output-dir=build --follow-imports src/ankisiyuan
+          poetry run python -m nuitka --standalone --onefile --assume-yes-for-downloads --output-dir=build --follow-imports src/ankisiyuan
           
       # Uploads artifacts
       - name: "Upload Artifacts"
