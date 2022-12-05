@@ -1,4 +1,4 @@
-from . import cli
+from ankisiyuan import cli
 
 
 if __name__ == '__main__':

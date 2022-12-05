@@ -7,7 +7,7 @@ import toml
 from AnkiIn import config as ankiin_config
 from AnkiIn.config import dict as conf
 
-from . import config
+from ankisiyuan import config
 
 
 version_name = '0.1.0'

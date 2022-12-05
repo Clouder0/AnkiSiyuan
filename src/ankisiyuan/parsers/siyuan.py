@@ -8,7 +8,7 @@ from AnkiIn.notetype_loader import discovered_notetypes
 from AnkiIn.parser import markdown
 from siyuanhelper import api
 
-from ..notetypes import SMQA, SQA, SCloze, SListCloze, STableCloze, SWatch
+from ankisiyuan.notetypes import SMQA, SQA, SCloze, SListCloze, STableCloze, SWatch
 
 
 # class SyntaxNode:

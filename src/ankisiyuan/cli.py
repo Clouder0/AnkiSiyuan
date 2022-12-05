@@ -4,9 +4,8 @@ import time
 
 from AnkiIn.config import dict as conf
 from AnkiIn.helper import ankiConnectHelper as ankiHelper
-
-from . import config, config_parser
-from .parser import siyuan as parser
+from ankisiyuan import config, config_parser
+from ankisiyuan.parsers import siyuan as siyuan_parser
 
 
 updated_notes = 0
@@ -26,7 +25,7 @@ make sure anki-connect is installed."
     print(f"Last Sync:{config.last_sync_time}")
     this_sync_time = datetime.datetime.now().strftime(r"%Y%m%d%H%M%S")
     print(f"Now Sync: {this_sync_time}")
-    note_list = await parser.sync(config.last_sync_time)
+    note_list = await siyuan_parser.sync(config.last_sync_time)
     for x in note_list:
         if x is None:
             continue
