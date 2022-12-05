@@ -22,6 +22,13 @@
 pip install ankisiyuan
 ```
 
+（可选方法）  
+下载对应平台的二进制文件，随后执行时将 `python -m ankisiyuan` 替换成对应的文件名。例如在 Windows 上，进入 `ankisiyuan.exe` 所在的目录，随后：
+
+```cmd
+./ankisiyuan.exe
+```
+
 需要在 Anki 中安装 anki-connect 拓展。
 
 基础使用方法：
@@ -59,6 +66,8 @@ pip install ankisiyuan
 ```bash
 pip install ankisiyuan --upgrade
 ```
+
+二进制文件直接替换文件即可更新。
 
 ## 思源侧标记
 
