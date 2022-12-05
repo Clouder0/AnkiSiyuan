@@ -6,6 +6,14 @@ Version numbers follow [semantic versioning](https://semver.org).
 
 ## Unreleased
 
+## v0.1.1
+
+Now Nuitka supported **binary** distribution is here to come!
+
+### Changed
+
+- Use absolute import instead of relative import in ankisiyuan package.
+
 ## v0.1.0
 
 Huge refactor. Brand new start.

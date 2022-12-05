@@ -1,0 +1,88 @@
+# This is a workflow for testing various Nuitka command-line options
+
+name: Build-All-Platforms
+
+# Controls when the workflow will run
+on:
+  release:
+    types: [published]
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
+      
+    runs-on: ${{ matrix.os }}
+    
+    steps:
+      # Check-out repository
+      - uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10' # Version range or exact version of a Python version to use, using SemVer's version range syntax
+          architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
+      
+      - name: Setup Poetry
+        uses: abatilo/actions-poetry@v2
+
+      - name: Install Package
+        run: |
+          poetry install
+
+      - name: Install Dependencies (Windows)
+        if: runner.os == 'Windows'
+        shell: powershell
+        run: |
+          $github_action_path = "${{ github.action_path }}"
+          # Fixes: C:\actions-runner\_work\repo\repo\./.github/actions/action-name
+          $github_action_path = $github_action_path -replace "\\\./", "\"
+          $github_action_path = $github_action_path -replace "/", "\"
+          pip install -r "$github_action_path\requirements.txt"
+
+      - name: Install Dependencies (macOS and Linux)
+        if: ${{ runner.os == 'macOS' || runner.os == 'Linux' }}
+        shell: bash
+        run: |
+          pip install -r "${{ github.action_path }}/requirements.txt"
+
+      - name: Build Executable (Windows)
+        if: runner.os == 'Windows'
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $args = @()
+          $args += @('--standalone')
+          $args += @('--onefile')
+          $args += @('--assume-yes-for-downloads')
+          $args += @('--output-dir="build"')
+          $args += @('--follow-imports')
+          python -m nuitka $args "src/ankisiyuan"
+      - name: Build Executable (macOS and Linux)
+        if: ${{ runner.os == 'macOS' || runner.os == 'Linux' }}
+        shell: bash
+        run: |
+          ARGS=""
+          SPACE=" "
+          $args = @()
+          $args += @('--standalone')
+          $args += @('--onefile')
+          $args += @('--assume-yes-for-downloads')
+          $args += @('--output-dir="build"')
+          $args += @('--follow-imports')
+          python -m nuitka $ARGS "src/ankisiyuan"
+          
+      # Uploads artifacts
+      - name: "Upload Artifacts"
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ runner.os }} Build
+          path: |
+            build/*.exe
+            build/*.bin
+            build/*.app/**/*
