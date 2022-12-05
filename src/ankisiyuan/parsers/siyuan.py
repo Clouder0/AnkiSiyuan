@@ -1,4 +1,4 @@
-import asyncio
+from __future__ import annotations
 
 from AnkiIn import config
 from AnkiIn.config import config_updater, dict as conf, update_config
@@ -6,9 +6,8 @@ from AnkiIn.helper.formatHelper import remove_suffix
 from AnkiIn.log import parser_logger as logger
 from AnkiIn.notetype_loader import discovered_notetypes
 from AnkiIn.parser import markdown
-from siyuanhelper import api
-
 from ankisiyuan.notetypes import SMQA, SQA, SCloze, SListCloze, STableCloze, SWatch
+from siyuanhelper import api
 
 
 # class SyntaxNode:
@@ -170,7 +169,7 @@ async def sync(last_sync_time: str) -> None:
     note_list: list[api.SiyuanBlock] = []
     subs = await siyuan.get_blocks_by_sql(
         f"WHERE parent_id in (SELECT block_id FROM attributes WHERE name='{tag_attr_name}') AND updated>'{last_sync_time}'",
-        full=True
+        full=True,
     )
     parents: dict[str, api.SiyuanBlock] = {}
     for x in subs:
