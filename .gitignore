@@ -3,6 +3,8 @@ log.txt
 last_sync_time
 dist
 AnkiSiyuan.egg-info
+ankisiyuan.build
+ankisiyuan.bin
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

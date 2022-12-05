@@ -23,6 +23,8 @@ flake8-use-fstring = "^1.4"
 pre-commit = "^2.20.0"
 black = "^22.8.0"
 isort = "^5.10.1"
+nuitka = "^1.2.4"
+ordered-set = "^4.1.0"
 
 
 [build-system]
