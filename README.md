@@ -2,6 +2,8 @@
 
 同步[思源笔记](https://github.com/siyuan-note/siyuan)中的数据到 Anki 中。
 
+[上手指南](https://ld246.com/article/1670312056742)
+
 [开发笔记](https://ld246.com/article/1627227554664) [AnkiLink 完全体构想](https://www.codein.icu/ankilink-complete/)
 
 相关项目：[AnkiIn 导入 Anki 的 Python 工具库](https://github.com/Clouder0/AnkiIn) [AnkiLink Markdown 导入 Anki](https://github.com/Clouder0/AnkiLink)
