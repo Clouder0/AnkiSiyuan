@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import asyncio
 import datetime
 import time
@@ -13,6 +15,7 @@ added_notes = 0
 
 
 async def execute():
+    config_parser.parse()
     if not ankiHelper.check_online():
         print(
             "Anki is not online! Please open Anki and \
@@ -20,7 +23,6 @@ make sure anki-connect is installed."
         )
         return
     start_time = time.perf_counter()
-    config_parser.parse()
     print(f'Api Token:{conf["siyuan"]["api_token"]}')
     print(f"Last Sync:{config.last_sync_time}")
     this_sync_time = datetime.datetime.now().strftime(r"%Y%m%d%H%M%S")

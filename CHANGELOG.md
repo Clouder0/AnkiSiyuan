@@ -6,6 +6,8 @@ Version numbers follow [semantic versioning](https://semver.org).
 
 ## Unreleased
 
+- Support custom SQL
+
 ## v0.1.1
 
 Now Nuitka supported **binary** distribution is here to come!

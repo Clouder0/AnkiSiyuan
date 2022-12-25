@@ -1,6 +1,7 @@
 __pycache__
 log.txt
 last_sync_time
+config.toml
 dist
 AnkiSiyuan.egg-info
 ankisiyuan.build

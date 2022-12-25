@@ -56,12 +56,14 @@ async def add_note(block: api.SiyuanBlock, note_list: list[api.SiyuanBlock]) -> 
 
 async def sync(last_sync_time: str) -> None:
     global tag_attr_name
-    siyuan = api.Siyuan(token=conf["siyuan"].get("api_token", ""))
+    base_url = conf["siyuan"].get("base_url", "http://127.0.0.1:6806")
+    siyuan = api.Siyuan(token=conf["siyuan"].get("api_token", ""), base_url=base_url)
     note_list: list[api.SiyuanBlock] = []
-    subs = await siyuan.get_blocks_by_sql(
-        f"WHERE parent_id in (SELECT block_id FROM attributes WHERE name='{tag_attr_name}') AND updated>'{last_sync_time}'",
-        full=True,
-    )
+    default_sql = r"WHERE parent_id in (SELECT block_id FROM attributes WHERE name = '{tag_attr_name}') AND updated > '{last_sync_time}'"
+    s_sql: str = conf["siyuan"].get("custom_sql", default_sql)
+    s_sql.format_map(locals())
+    print(f"executing SQL:{s_sql}")
+    subs = await siyuan.get_blocks_by_sql(s_sql, full=True)
     parents: dict[str, api.SiyuanBlock] = {}
     for x in subs:
         try:
