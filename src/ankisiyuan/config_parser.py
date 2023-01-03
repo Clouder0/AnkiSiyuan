@@ -35,6 +35,7 @@ def enable_log_file():
         "level": "DEBUG" if config.log_debug else "INFO",
         "formatter": "standard",
         "class": "logging.FileHandler",
+        "encoding": "utf-8",
         "filename": "log.txt",
         "mode": "a",
     }
